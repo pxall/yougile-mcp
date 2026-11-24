@@ -65,6 +65,9 @@ MAPPING: dict[str, tuple[str | None, str, Access]] = {
     "UserController_create": ("users", "invite", "admin"),
     "UserController_update": ("users", "update", "admin"),
     "UserController_delete": ("users", "remove", "admin"),
+    # The key owner's own status; YouGile keeps one for all companies of the account.
+    "UserController_setCustomStatus": ("users", "set_custom_status", "admin"),
+    "UserController_clearCustomStatus": ("users", "clear_custom_status", "admin"),
     "DepartmentController_search": ("users", "list_departments", "read"),
     "DepartmentController_get": ("users", "get_department", "read"),
     "DepartmentController_create": ("users", "create_department", "admin"),
@@ -120,7 +123,10 @@ TOOLS: dict[str, str] = {
     "boards": "Boards: list (by projectId), get, create, update/rename/move/soft-delete.",
     "columns": "Board columns: list (by boardId), get, create, update/rename/soft-delete.",
     "projects": "Projects and project roles: list, get, create, update members, roles CRUD.",
-    "users": "Company employees and departments: list, get, me, invite, update, remove.",
+    "users": (
+        "Company employees and departments: list, get, me, invite, update, remove; "
+        "your own custom status (shared by all companies of the account)."
+    ),
     "stickers": "Custom stickers (string/state and sprint) and their states.",
     "company": "Company details and webhooks (event subscriptions).",
     "files": "Upload a file to YouGile; returns a URL to use in chat messages or descriptions.",

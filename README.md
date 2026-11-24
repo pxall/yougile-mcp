@@ -21,7 +21,7 @@ MCP-сервер, через который Claude и другие AI-ассис
 
 - **Работа с задачами по-человечески.** Названия досок и колонок, имена исполнителей, номера
   задач и даты вместо UUID и меток времени. Перенос карточки сам проходит цепочку Workflow.
-- **Весь API.** 66 операций в 10 доменных инструментах плюс справочный `yougile_help`.
+- **Весь API.** 68 операций в 10 доменных инструментах плюс справочный `yougile_help`.
 - **Задачи по номеру.** Сквозной `ID-123` или проектный `DEV-12`.
 - **Готовые сценарии.** Стендап, отчёт по часам, разбор очереди — одной командой.
 - **Общий лимит запросов.** YouGile пропускает 50 запросов в минуту на всю компанию, включая
@@ -169,7 +169,7 @@ claude mcp add yougile --scope user -e YOUGILE_API_KEY=ваш_ключ -- uvx "y
 | `yougile_boards` | доски: список, открыть, создать, переименовать, перенести, удалить |
 | `yougile_columns` | колонки: список, открыть, создать, изменить, удалить |
 | `yougile_projects` | проекты и участники, роли проекта |
-| `yougile_users` | сотрудники и отделы: список, приглашение, изменение, удаление из компании |
+| `yougile_users` | сотрудники и отделы: список, приглашение, изменение, удаление из компании; свой личный статус |
 | `yougile_stickers` | стикеры с набором состояний, стикеры спринтов и их состояния |
 | `yougile_company` | данные компании, вебхуки |
 | `yougile_files` | загрузка файла (по пути или в base64), возвращает ссылку |
@@ -351,7 +351,7 @@ tasks, boards, columns, chats, employees and stickers, on top of the official RE
 
 - **Task work in human terms.** Board and column names, assignee names, task numbers and
   dates instead of UUIDs and timestamps. Moving a card walks the Workflow chain by itself.
-- **The whole API.** 66 operations in 10 domain tools, plus the `yougile_help` reference tool.
+- **The whole API.** 68 operations in 10 domain tools, plus the `yougile_help` reference tool.
 - **Tasks by number.** The company-wide `ID-123` or the project one like `DEV-12`.
 - **Ready-made scenarios.** Stand-up, hours report, queue triage — one command each.
 - **A shared rate limit.** YouGile allows 50 requests per minute per company, people in the
@@ -501,7 +501,7 @@ Clients without MCP Apps (Claude Code, for one) are not shown the screens or the
 | `yougile_boards` | boards: list, get, create, rename, move, delete |
 | `yougile_columns` | columns: list, get, create, update, delete |
 | `yougile_projects` | projects and their members, project roles |
-| `yougile_users` | employees and departments: list, invite, update, remove from the company |
+| `yougile_users` | employees and departments: list, invite, update, remove from the company; your own custom status |
 | `yougile_stickers` | state stickers, sprint stickers and their states |
 | `yougile_company` | company details, webhooks |
 | `yougile_files` | upload a file (by path or as base64); returns a URL |

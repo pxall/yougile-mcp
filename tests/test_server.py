@@ -1,4 +1,7 @@
+import json
+
 import pytest
+from conftest import ok
 from fastmcp import Client
 from fastmcp.exceptions import ToolError
 
@@ -56,6 +59,23 @@ async def test_call_passes_through_to_api(server_for, fake):
         )
     assert result.data["title"] == "Internal"
     assert fake.requests[-1].url.path == "/api-v2/tasks/ID-1"
+
+
+async def test_own_status_reaches_the_api(server_for, fake):
+    path = "/api-v2/users/me/custom-status"
+    status = {"emoji": "🤧", "text": "Болею"}
+    for method in ("PUT", "DELETE"):
+        fake.overrides[(method, "/users/me/custom-status")] = lambda _r: ok({"id": "u-me"})
+    async with Client(server_for()) as client:
+        await client.call_tool(
+            "yougile_users", {"operation": "set_custom_status", "params": status}
+        )
+        sent = fake.requests[-1]
+        assert (sent.method, sent.url.path) == ("PUT", path)
+        assert json.loads(sent.content) == status
+        await client.call_tool("yougile_users", {"operation": "clear_custom_status"})
+    sent = fake.requests[-1]
+    assert (sent.method, sent.url.path, sent.content) == ("DELETE", path, b"")
 
 
 async def test_param_errors_become_tool_errors(server_for):

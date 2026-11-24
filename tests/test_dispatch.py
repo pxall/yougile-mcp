@@ -27,6 +27,20 @@ def test_unknown_param_is_rejected_with_allowed_list():
         prepare(find("tasks.update"), {"id": "x", "titel": "typo"})
 
 
+def test_own_status_requests():
+    status = {"emoji": "🤧", "text": "Болею"}
+    prep = prepare(find("users.set_custom_status"), status)
+    assert (prep.op.method, prep.path, prep.body) == ("PUT", "/users/me/custom-status", status)
+    assert "required body fields: emoji, text" in error_hint(prep.op)
+    with pytest.raises(ParamError, match="unknown parameter.*id"):  # only one's own status
+        prepare(find("users.set_custom_status"), {"id": "u-ivan", **status})
+
+    prep = prepare(find("users.clear_custom_status"), {})
+    assert (prep.op.method, prep.path, prep.body) == ("DELETE", "/users/me/custom-status", None)
+    with pytest.raises(ParamError, match="unknown parameter.*text"):
+        prepare(find("users.clear_custom_status"), {"text": "x"})
+
+
 def test_missing_path_param():
     with pytest.raises(ParamError, match="missing required path parameter 'id'"):
         prepare(find("tasks.get"), {})

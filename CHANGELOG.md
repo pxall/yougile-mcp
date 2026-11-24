@@ -5,6 +5,30 @@
 
 ## [Unreleased]
 
+### Русский
+
+#### Добавлено
+- `yougile_users` → `set_custom_status` и `clear_custom_status`: поставить и очистить свой личный
+  статус (новые операции API YouGile `PUT` и `DELETE /users/me/custom-status`). Статус — общий для
+  всех компаний аккаунта. Нужна роль `admin`, как и для остальных записей `yougile_users`; при
+  ограничении проектами запрещены как операции уровня компании.
+
+#### Изменено
+- Снимок спецификации YouGile обновлён: `yougile_help` предупреждает, что `users` группового чата
+  заменяется целиком, и описывает шорткод упоминания в сообщениях.
+
+### English
+
+#### Added
+- `yougile_users` → `set_custom_status` and `clear_custom_status`: set and clear your own custom
+  status (the new YouGile API operations `PUT` and `DELETE /users/me/custom-status`). The status is
+  shared by all companies of the account. Needs the `admin` role, like the other `yougile_users`
+  writes; refused as company-wide in sessions limited to projects.
+
+#### Changed
+- YouGile's spec snapshot refreshed: `yougile_help` warns that a group chat's `users` are replaced
+  as a whole and describes the mention shortcode in messages.
+
 ## [0.21.3] — 2026-10-22
 
 ### Русский
