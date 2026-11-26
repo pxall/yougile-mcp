@@ -133,3 +133,27 @@ async def test_subtasks_from_other_projects_are_outside_the_allowlist(make_runti
     rt = make_runtime(confirm_projects=["Клиенты"])
     _, g = await guard(rt, "tasks.update", {"id": "t-int", "subtasks": ["t-cli"]})
     assert g.confirm_titles == ["Клиенты"]
+
+
+OWN_STATUS = (
+    ("users.set_custom_status", {"emoji": "🤧", "text": "Болею"}),
+    ("users.clear_custom_status", {}),
+)
+
+
+@pytest.mark.parametrize(("op", "params"), OWN_STATUS)
+async def test_own_status_follows_the_other_user_writes(make_runtime, fake, op, params):
+    Policy(role="admin").check_static(find(op), params)
+    with pytest.raises(PolicyError, match="needs role 'admin'"):
+        Policy(role="member").check_static(find(op), params)
+    with pytest.raises(PolicyError, match="denied"):
+        Policy(deny=["users.*"]).check_static(find(op), params)
+    Policy(deny=["*.delete"]).check_static(find(op), params)  # clearing removes no object
+
+    # The status is wider than any project: refused under an allowlist, no project to confirm.
+    with pytest.raises(PolicyError, match="company-wide"):
+        await guard(make_runtime(projects=["Разработка"]), op, params)
+    _, g = await guard(make_runtime(confirm_projects=["Клиенты"]), op, params)
+    assert g.confirm_titles == []
+    assert fake.calls("PUT", "/api-v2/users/me/custom-status") == 0
+    assert fake.calls("DELETE", "/api-v2/users/me/custom-status") == 0

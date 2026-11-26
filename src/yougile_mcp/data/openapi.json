@@ -438,6 +438,76 @@
     ]
    }
   },
+  "/api-v2/users/me/custom-status": {
+   "put": {
+    "operationId": "UserController_setCustomStatus",
+    "summary": "Изменить свой личный статус",
+    "description": "Статус общий для всех компаний аккаунта",
+    "parameters": [],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserCustomStatusDto"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WithIdDto"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": ""
+     }
+    },
+    "tags": [
+     "Сотрудники"
+    ],
+    "security": [
+     {
+      "bearer": []
+     }
+    ]
+   },
+   "delete": {
+    "operationId": "UserController_clearCustomStatus",
+    "summary": "Очистить свой личный статус",
+    "description": "Статус очищается во всех компаниях аккаунта, повторная очистка разрешена",
+    "parameters": [],
+    "responses": {
+     "200": {
+      "description": "",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WithIdDto"
+        }
+       }
+      }
+     },
+     "404": {
+      "description": ""
+     }
+    },
+    "tags": [
+     "Сотрудники"
+    ],
+    "security": [
+     {
+      "bearer": []
+     }
+    ]
+   }
+  },
   "/api-v2/companies{*companyId}": {
    "get": {
     "operationId": "CompanyController_get",
@@ -2957,6 +3027,7 @@
    "put": {
     "operationId": "GroupChatController_update",
     "summary": "Изменить чат",
+    "description": "Меняются только переданные поля. Поле users заменяет состав чата целиком, роли исключённых сотрудников удаляются. Если у пользователя ключа нет прав на изменение, возвращается 400.",
     "parameters": [
      {
       "name": "id",
@@ -3119,6 +3190,7 @@
    "post": {
     "operationId": "ChatMessageController_sendMessage",
     "summary": "Написать в чат",
+    "description": "Чтобы упомянуть сотрудника, вставьте в поле text шорткод [!mention:<userId>!], где userId — ID сотрудника из GET /api-v2/users. Например: \"[!mention:18a8bff2-f6b0-425a-9f89-3a003b8eb039!], посмотри задачу\". Шорткод заменится на @Имя со ссылкой на профиль, сотрудник получит уведомление об упоминании, а в чате задачи станет подписчиком. Шорткод работает только в text и только без textHtml: textHtml сохраняется как есть. Шорткод с несуществующим userId остаётся в тексте без изменений.",
     "parameters": [
      {
       "name": "chatId",
@@ -3739,11 +3811,13 @@
     "properties": {
      "emoji": {
       "type": "string",
-      "example": "🤧"
+      "example": "🤧",
+      "maxLength": 32
      },
      "text": {
       "type": "string",
-      "example": "Болею"
+      "example": "Болею",
+      "maxLength": 1024
      }
     },
     "required": [
@@ -7213,7 +7287,7 @@
         "notified": false
        }
       },
-      "description": "Сотрудники в чате"
+      "description": "Сотрудники в чате. При изменении чата список заменяется целиком: сотрудники, которых в нём нет, исключаются из чата"
      },
      "userRoleMap": {
       "type": "object",
@@ -7309,7 +7383,7 @@
         "notified": false
        }
       },
-      "description": "Сотрудники в чате"
+      "description": "Сотрудники в чате. При изменении чата список заменяется целиком: сотрудники, которых в нём нет, исключаются из чата"
      },
      "userRoleMap": {
       "type": "object",
@@ -7366,7 +7440,7 @@
         "notified": false
        }
       },
-      "description": "Сотрудники в чате"
+      "description": "Сотрудники в чате. При изменении чата список заменяется целиком: сотрудники, которых в нём нет, исключаются из чата"
      },
      "userRoleMap": {
       "type": "object",
@@ -7426,7 +7500,7 @@
         "notified": false
        }
       },
-      "description": "Сотрудники в чате"
+      "description": "Сотрудники в чате. При изменении чата список заменяется целиком: сотрудники, которых в нём нет, исключаются из чата"
      },
      "userRoleMap": {
       "type": "object",
