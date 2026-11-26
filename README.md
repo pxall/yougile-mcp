@@ -1,8 +1,8 @@
 # YouGile MCP
 
-[![Release](https://img.shields.io/github/v/release/indalo-tech/yougile-mcp?label=release)](https://github.com/indalo-tech/yougile-mcp/releases/latest)
+[![Release](https://img.shields.io/github/v/release/pxall/yougile-mcp?label=release)](https://github.com/pxall/yougile-mcp/releases/latest)
 [![PyPI](https://img.shields.io/pypi/v/yougile-mcp)](https://pypi.org/project/yougile-mcp/)
-[![CI](https://github.com/indalo-tech/yougile-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/indalo-tech/yougile-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/pxall/yougile-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/pxall/yougile-mcp/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.11%E2%80%933.14-blue)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
@@ -41,7 +41,7 @@ MCP-сервер, через который Claude и другие AI-ассис
 > **Без установки:** добавьте в AI-клиенте удалённый MCP-сервер `https://yougile.indalo.ru/mcp`
 > и войдите логином YouGile. Администраторы компании настраивают права сотрудников на
 > [yougile.indalo.ru/admin](https://yougile.indalo.ru/admin). Код сервера —
-> [yougile-mcp-cloud](https://github.com/indalo-tech/yougile-mcp-cloud).
+> [yougile-mcp-cloud](https://github.com/pxall/yougile-mcp-cloud).
 
 ### Быстрый старт
 
@@ -290,7 +290,7 @@ claude mcp add yougile --scope user -e YOUGILE_API_KEY=ваш_ключ -- uvx "y
 ### Версии
 
 - Актуальная версия — на бейдже вверху и на странице
-  [Releases](https://github.com/indalo-tech/yougile-mcp/releases/latest); что изменилось —
+  [Releases](https://github.com/pxall/yougile-mcp/releases/latest); что изменилось —
   в [CHANGELOG.md](CHANGELOG.md).
 - Установленную версию показывают `yougile-mcp --version` и `yougile-mcp check`.
 - Номера по [SemVer](https://semver.org/lang/ru/): до 1.0 новые возможности поднимают вторую
@@ -333,8 +333,8 @@ Actions → Release → Run workflow.
 - [Hovhannes Mirzoyan](https://github.com/hovhannes-mirzoyan)
 - [Artashes Mirzoyan](https://github.com/AMirzoian)
 
-Проект развивает [Indalo](https://github.com/indalo-tech). Предложения и ошибки — в
-[Issues](https://github.com/indalo-tech/yougile-mcp/issues).
+Проект развивает [Indalo](https://github.com/pxall). Предложения и ошибки — в
+[Issues](https://github.com/pxall/yougile-mcp/issues).
 
 ### Лицензия
 
@@ -371,7 +371,7 @@ tasks, boards, columns, chats, employees and stickers, on top of the official RE
 > **Nothing to install:** add the remote MCP server `https://yougile.indalo.ru/mcp` in your AI
 > client and sign in with your YouGile login. Company admins set their people's rights at
 > [yougile.indalo.ru/admin](https://yougile.indalo.ru/admin). Server code:
-> [yougile-mcp-cloud](https://github.com/indalo-tech/yougile-mcp-cloud).
+> [yougile-mcp-cloud](https://github.com/pxall/yougile-mcp-cloud).
 
 ### Quick start
 
@@ -620,7 +620,7 @@ error listing the options, so the model asks the user.
 ### Versions
 
 - The current version is on the badge above and on the
-  [Releases](https://github.com/indalo-tech/yougile-mcp/releases/latest) page; what changed is
+  [Releases](https://github.com/pxall/yougile-mcp/releases/latest) page; what changed is
   in [CHANGELOG.md](CHANGELOG.md).
 - `yougile-mcp --version` and `yougile-mcp check` show the installed version.
 - Numbers follow [SemVer](https://semver.org/): before 1.0, new features bump the second
@@ -663,8 +663,8 @@ published again via Actions → Release → Run workflow.
 - [Hovhannes Mirzoyan](https://github.com/hovhannes-mirzoyan)
 - [Artashes Mirzoyan](https://github.com/AMirzoian)
 
-Maintained by [Indalo](https://github.com/indalo-tech). Ideas and bugs go to
-[Issues](https://github.com/indalo-tech/yougile-mcp/issues).
+Maintained by [Indalo](https://github.com/pxall). Ideas and bugs go to
+[Issues](https://github.com/pxall/yougile-mcp/issues).
 
 ### License
 
